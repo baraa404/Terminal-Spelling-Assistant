@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cword"
+version = "0.1.0"
+description = "A CLI spelling assistant powered by Google Gemini AI"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT"}
+authors = [
+    {name = "Baraa", email = "baraa0email@gmail.com"}
+]
+keywords = ["spelling", "cli", "assistant", "grammar", "correction", "ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing :: Linguistic",
+    "Topic :: Utilities",
+    "Environment :: Console",
+]
+dependencies = [
+    "requests>=2.25.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/baraa404/Terminal-Spelling-Assistant"
+Repository = "https://github.com/baraa404/Terminal-Spelling-Assistant.git"
+Issues = "https://github.com/baraa404/Terminal-Spelling-Assistant/issues"
+
+[project.scripts]
+cword = "main:run"
+
+[tool.setuptools]
+py-modules = ["main"]
