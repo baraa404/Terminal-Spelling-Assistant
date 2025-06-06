@@ -1,11 +1,12 @@
-# 📝 Spelling Assistant CLI
+# 📝 Spelling & Grammar Assistant CLI
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/python-3.6+-blue.svg)
+![Python](https://img.shields.io/badge/python-3.7+-blue.svg)
+![PyPI](https://img.shields.io/badge/PyPI-cword-blue.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 
-*A powerful command-line spelling assistant powered by Google Gemini AI* ✨
+*A powerful command-line spelling and grammar assistant powered by AI* ✨
 
 ![Showcase GIF](https://github.com/baraa404/Terminal-Spelling-Assistant-/blob/main/showcases.gif)
 
@@ -16,7 +17,7 @@
 ## 🚀 Quick Start
 
 ### Prerequisites
-- 🐍 **Python 3.6+** ([Download here](https://python.org/downloads/))
+- 🐍 **Python 3.7+** ([Download here](https://python.org/downloads/))
 - 🌐 Internet connection
 
 ### Installation
@@ -35,13 +36,13 @@ Get your free API key from [Google AI Studio](https://makersuite.google.com/app/
 
 ### Start Using
 ```bash
-# Single word correction
+# Fix spelling mistakes
 cword misspeled
 # → misspelled
 
-# Sentence correction (use quotes)
-cword "This sentance has some erors in it."
-# → This sentence has some errors in it.
+# Fix spelling and grammar in sentences
+cword This sentance has some erors in it and grammer mistakes.
+# → This sentence has some errors in it and grammar mistakes.
 ```
 
 ---
@@ -75,12 +76,19 @@ cword seperate
 cword accomodate
 # → accommodate
 
-# Correct entire sentences (use double quotes)
-cword "I have recieved the documnt and it looks grate."
+# Fix spelling and grammar in sentences (no quotes needed)
+cword I have recieved the documnt and it looks grate.
 # → I have received the document and it looks great.
 
-cword "The commitee will meet on wendsday to discus the propsal."
+cword The commitee will meet on wendsday to discus the propsal.
 # → The committee will meet on Wednesday to discuss the proposal.
+
+# Grammar corrections
+cword I are going to the store
+# → I am going to the store
+
+cword She don't like that movie
+# → She doesn't like that movie
 ```
 
 ### 🎯 Smart Suggestions
@@ -101,9 +109,10 @@ cword --reset-api
 ```
 
 ### 💡 Pro Tips
-- **Fast corrections**: Just type `cword` followed by any word
-- **Sentence corrections**: Use double quotes for full sentences
-- **No extra quotes needed**: `cword misspelled word` works for multiple words
+- **Fast corrections**: Just type `cword` followed by any word or sentence
+- **Spelling & Grammar**: Fixes both spelling mistakes and grammar errors automatically
+- **Multiple words**: `cword misspelled sentence works perfectly` 
+- **No quotes needed**: Works with spaces automatically
 - **Secure**: Your API key is stored locally in `~/.config/spelling-cli/config.json`
 - **Offline safety**: No data is stored remotely, only sent to Google's API for processing
 
@@ -111,7 +120,8 @@ cword --reset-api
 
 ## ✨ Features
 
-- 🤖 **AI-Powered**: Uses Google Gemini for intelligent spelling correction
+- 🤖 **AI-Powered**: Uses Google Gemini for intelligent spelling and grammar correction
+- 📝 **Dual Purpose**: Fixes both spelling mistakes and grammar errors
 - 🔐 **Secure**: API key stored locally and securely
 - ⚡ **Fast**: Instant corrections from the command line
 - 🎯 **Smart**: Provides multiple suggestions for ambiguous words
@@ -124,19 +134,49 @@ cword --reset-api
 
 | Input | Output | Description |
 |-------|--------|-------------|
-| `cword accomodate` | `accommodate` | Simple correction |
+| `cword accomodate` | `accommodate` | Spelling correction |
 | `cword occassion` | `occasion` | Double letter fix |
 | `cword therefor` | `(therefore - therefor)` | Multiple options |
 | `cword reccomend` | `recommend` | Common misspelling |
-| `cword "This is a grate sentance."` | `This is a great sentence.` | Sentence correction |
+| `cword This is a grate sentance.` | `This is a great sentence.` | Spelling + grammar |
+| `cword I are going home` | `I am going home` | Grammar correction |
+
+---
+
+## 🛠️ Development
+
+### Building from Source
+
+```bash
+# Install build tools
+pip install build
+
+# Build the package
+python -m build
+
+# Install locally for development
+pip install -e .
+```
+
+### Running Without Installation
+
+```bash
+# Run as module
+python -m cword --help
+
+# Or directly from source (development)
+python src/cword/cli.py --help
+```
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to:
+We welcome contributions! Here's how you can help:
+
 - 🐛 Report bugs
-- ✨ Suggest new features
+- 💡 Suggest new features
+- 📝 Improve documentation  
 - 🔧 Submit pull requests
 
 ---

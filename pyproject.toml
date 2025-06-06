@@ -1,24 +1,27 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
 
 [project]
 name = "cword"
 version = "0.1.0"
-description = "A CLI spelling assistant powered by Google Gemini AI"
+description = "A CLI spelling assistant powered by AI"
 readme = "README.md"
-requires-python = ">=3.6"
-license = {text = "MIT"}
+requires-python = ">=3.7"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
     {name = "Baraa", email = "baraa0email@gmail.com"}
 ]
-keywords = ["spelling", "cli", "assistant", "grammar", "correction", "ai"]
+maintainers = [
+    {name = "Baraa", email = "baraa0email@gmail.com"}
+]
+keywords = ["spelling", "cli", "assistant", "grammar", "correction", "ai", "gemini", "text-processing"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: End Users/Desktop",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -28,6 +31,7 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic",
     "Topic :: Utilities",
     "Environment :: Console",
+    "Operating System :: OS Independent",
 ]
 dependencies = [
     "requests>=2.25.0"
@@ -35,11 +39,9 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/baraa404/Terminal-Spelling-Assistant"
-Repository = "https://github.com/baraa404/Terminal-Spelling-Assistant.git"
+Repository = "https://github.com/baraa404/Terminal-Spelling-Assistant"
 Issues = "https://github.com/baraa404/Terminal-Spelling-Assistant/issues"
+Documentation = "https://github.com/baraa404/Terminal-Spelling-Assistant#readme"
 
 [project.scripts]
-cword = "main:run"
-
-[tool.setuptools]
-py-modules = ["main"]
+cword = "cword.cli:main"

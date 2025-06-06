@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+"""
+cword CLI - A command-line spelling and grammar assistant powered by AI
+"""
+
 import sys
 import requests
 import os
@@ -52,6 +57,7 @@ def get_api_key():
             print("API key cannot be empty. Please try again.")
 
 def get_correction(text):
+    """Get spelling/grammar correction from Google Gemini AI."""
     api_key = get_api_key()
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
 
@@ -80,38 +86,67 @@ Here is my word: {text}"""
         ]
     }
 
-    response = requests.post(url, headers=headers, json=data)
-    
     try:
+        response = requests.post(url, headers=headers, json=data, timeout=30)
+        response.raise_for_status()
         reply = response.json()['candidates'][0]['content']['parts'][0]['text'].strip()
         return reply
-    except KeyError:
-        return "Error: Could not get correction from Gemini."
+    except requests.exceptions.RequestException as e:
+        return f"Error: Network request failed - {str(e)}"
+    except (KeyError, IndexError) as e:
+        return "Error: Could not get correction from Gemini. Please check your API key."
+    except Exception as e:
+        return f"Error: Unexpected error - {str(e)}"
 
-def run():
-    # Check for special commands
-    if len(sys.argv) == 2 and sys.argv[1] == "--reset-api":
-        config = load_config()
-        if "gemini_api_key" in config:
-            del config["gemini_api_key"]
-            if save_config(config):
-                print("API key reset successfully. You'll be prompted for a new one next time.")
+def show_help():
+    """Display help information."""
+    print("""
+cword - A CLI spelling and grammar assistant powered by  AI
+
+Usage:
+    cword <word>                   Check spelling of a single word
+    cword <sentence to check>      Check and correct spelling and grammar
+    cword --reset-api             Reset your API key
+    cword --help                  Show this help message
+
+Examples:
+    cword teh                     → the
+    cword I are writting a leter  → I am writing a letter
+    cword --reset-api             → Resets stored API key
+
+Get your Gemini API key from: https://makersuite.google.com/app/apikey
+""")
+
+def main():
+    """Main entry point for the cword CLI."""
+    # Handle special commands
+    if len(sys.argv) == 2:
+        if sys.argv[1] in ["--help", "-h", "help"]:
+            show_help()
+            return
+        elif sys.argv[1] == "--reset-api":
+            config = load_config()
+            if "gemini_api_key" in config:
+                del config["gemini_api_key"]
+                if save_config(config):
+                    print("API key reset successfully. You'll be prompted for a new one next time.")
+                else:
+                    print("Error: Could not reset API key.")
             else:
-                print("Error: Could not reset API key.")
-        else:
-            print("No API key found to reset.")
-        return
+                print("No API key found to reset.")
+            return
     
     if len(sys.argv) < 2:
-        print("Usage: words <misspelled-word>")
-        print("       words \"sentence to check and correct\"")
-        print("       words --reset-api  (to reset your API key)")
+        print("Usage: cword <word-or-sentence>")
+        print("       cword <sentence to check and correct>")
+        print("       cword --reset-api  (to reset your API key)")
+        print("       cword --help      (for detailed help)")
         return
 
     # Join all arguments to handle sentences with spaces
     input_text = " ".join(sys.argv[1:])
     
-    # Check if the input is enclosed in double quotes
+    # Check if the input is enclosed in double quotes (optional)
     if input_text.startswith('"') and input_text.endswith('"'):
         # Remove the quotes for processing
         input_text = input_text[1:-1]
@@ -120,4 +155,4 @@ def run():
     print(correction)
 
 if __name__ == "__main__":
-    run()
+    main()
