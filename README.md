@@ -8,7 +8,7 @@
 
 *A powerful command-line spelling and grammar assistant powered by AI* ✨
 
-![Showcase GIF](showcasess.gif)
+![Showcase GIF](representation.gif)
 
 </div>
 
