@@ -8,25 +8,33 @@
 
 *A powerful command-line spelling assistant powered by Google Gemini AI* ✨
 
+![Showcase GIF](https://github.com/baraa404/Terminal-Spelling-Assistant-/blob/main/showcases.gif)
+
 </div>
 
 ---
 
-## 🚀 Quick Install & Use
+## 🚀 Quick Start
 
-Get spelling corrections in 3 simple steps:
+### Prerequisites
+- 🐍 **Python 3.6+** ([Download here](https://python.org/downloads/))
+- 🌐 Internet connection
 
-### 1️⃣ Install
+### Installation
 ```bash
+# Quick install (recommended)
+pip install git+https://github.com/baraa404/spelling-cli.git
+
+# Or clone and install
 git clone https://github.com/baraa404/spelling-cli
 cd spelling-cli
 pip install .
 ```
 
-### 2️⃣ Get API Key
-Get your free API key from [Google AI Studio](https://makersuite.google.com/app/apikey) (takes 30 seconds)
+### Get API Key
+Get your free API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
 
-### 3️⃣ Start Using
+### Start Using
 ```bash
 # Single word correction
 words misspeled
@@ -35,35 +43,6 @@ words misspeled
 # Sentence correction (use quotes)
 words "This sentance has some erors in it."
 # → This sentence has some errors in it.
-```
-
-That's it! ✨
-
----
-
-## 📦 Installation Options
-
-### 🔥 Quick Install (Recommended)
-```bash
-git clone https://github.com/baraa404/spelling-cli
-cd spelling-cli
-pip install .
-```
-
-### 🛠️ Development Install
-For developers who want to modify the code:
-```bash
-git clone https://github.com/baraa404/spelling-cli
-cd spelling-cli
-pip install -e .
-```
-
-### 📋 Manual Install
-If you downloaded the ZIP file:
-```bash
-unzip spelling-cli-main.zip
-cd spelling-cli-main
-pip install .
 ```
 
 ---
@@ -112,7 +91,7 @@ words reed
 # → (read - red - reed)
 
 words theres
-# → (their - there - they're)
+# → (there's - theirs - there is)
 ```
 
 ### 🔄 API Key Management
@@ -139,14 +118,6 @@ words --reset-api
 - 🎯 **Smart**: Provides multiple suggestions for ambiguous words
 - 🛠️ **Easy Setup**: One-time API key configuration
 - 🔄 **Flexible**: Reset API key anytime
-
----
-
-## 🛠️ Requirements
-
-- 🐍 Python 3.6 or higher
-- 🌐 Internet connection
-- 🔑 Google Gemini API key (free)
 
 ---
 
