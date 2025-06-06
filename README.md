@@ -8,7 +8,7 @@
 
 *A powerful command-line spelling and grammar assistant powered by AI* ✨
 
-![Showcase GIF](representation.gif)
+![Showcase GIF](https://github.com/baraa404/Terminal-Spelling-Assistant/blob/main/representation.gif)
 
 </div>
 
