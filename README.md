@@ -3,7 +3,6 @@
 <div align="center">
 
 ![Python](https://img.shields.io/badge/python-3.6+-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 
 *A powerful command-line spelling assistant powered by Google Gemini AI* ✨
@@ -139,12 +138,6 @@ Contributions are welcome! Feel free to:
 - 🐛 Report bugs
 - ✨ Suggest new features
 - 🔧 Submit pull requests
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
