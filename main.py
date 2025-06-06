@@ -51,13 +51,21 @@ def get_api_key():
         else:
             print("API key cannot be empty. Please try again.")
 
-def get_correction(word):
+def get_correction(text):
     api_key = get_api_key()
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={api_key}"
 
-    prompt = f"""Act as a helpful spelling assistant. Whenever I type a word that is misspelled, provide the correct spelling of that word. If you are certain about the word I am trying to type, give me the correct spelling. If you are not certain and there are multiple possible corrections, list them in the following format: (word1 - word2 - word3 - etc...). For example, if I type 'tbale', you should respond with 'table'. If I type 'reed', you might respond with '(read - red - reed)'. Do not provide any additional information or explanations, just the correctly spelled word or the list of possible corrections.
+    # Determine if it's a word or sentence based on content
+    is_sentence = len(text.split()) > 1 or any(char in text for char in '.!?,:;')
+    
+    if is_sentence:
+        prompt = f"""Act as a helpful spelling and grammar assistant. I will provide you with a sentence that may contain spelling or grammar errors. Please correct any mistakes and return the corrected sentence. If the sentence is already correct, return it unchanged. Do not provide any additional information or explanations, just the corrected sentence.
 
-Here is my word: {word}"""
+Here is my sentence: {text}"""
+    else:
+        prompt = f"""Act as a helpful spelling assistant. Whenever I type a word that is misspelled, provide the correct spelling of that word. If you are certain about the word I am trying to type, give me the correct spelling. If you are not certain and there are multiple possible corrections, list them in the following format: (word1 - word2 - word3 - etc...). For example, if I type 'tbale', you should respond with 'table'. If I type 'reed', you might respond with '(read - red - reed)'. Do not provide any additional information or explanations, just the correctly spelled word or the list of possible corrections.
+
+Here is my word: {text}"""
 
     headers = {
         "Content-Type": "application/json"
@@ -94,13 +102,21 @@ def run():
             print("No API key found to reset.")
         return
     
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         print("Usage: words <misspelled-word>")
+        print("       words \"sentence to check and correct\"")
         print("       words --reset-api  (to reset your API key)")
         return
 
-    word = sys.argv[1]
-    correction = get_correction(word)
+    # Join all arguments to handle sentences with spaces
+    input_text = " ".join(sys.argv[1:])
+    
+    # Check if the input is enclosed in double quotes
+    if input_text.startswith('"') and input_text.endswith('"'):
+        # Remove the quotes for processing
+        input_text = input_text[1:-1]
+    
+    correction = get_correction(input_text)
     print(correction)
 
 if __name__ == "__main__":

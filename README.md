@@ -28,8 +28,13 @@ Get your free API key from [Google AI Studio](https://makersuite.google.com/app/
 
 ### 3️⃣ Start Using
 ```bash
+# Single word correction
 words misspeled
 # → misspelled
+
+# Sentence correction (use quotes)
+words "This sentance has some erors in it."
+# → This sentence has some errors in it.
 ```
 
 That's it! ✨
@@ -40,7 +45,7 @@ That's it! ✨
 
 ### 🔥 Quick Install (Recommended)
 ```bash
-git clone https://github.com/baraa404/spelling-cli.git
+git clone https://github.com/baraa404/spelling-cli
 cd spelling-cli
 pip install .
 ```
@@ -48,7 +53,7 @@ pip install .
 ### 🛠️ Development Install
 For developers who want to modify the code:
 ```bash
-git clone https://github.com/baraa404/spelling-cli.git
+git clone https://github.com/baraa404/spelling-cli
 cd spelling-cli
 pip install -e .
 ```
@@ -91,6 +96,13 @@ words seperate
 
 words accomodate
 # → accommodate
+
+# Correct entire sentences (use double quotes)
+words "I have recieved the documnt and it looks grate."
+# → I have received the document and it looks great.
+
+words "The commitee will meet on wendsday to discus the propsal."
+# → The committee will meet on Wednesday to discuss the proposal.
 ```
 
 ### 🎯 Smart Suggestions
@@ -99,7 +111,7 @@ When there are multiple possible corrections:
 words reed
 # → (read - red - reed)
 
-words there
+words theres
 # → (their - there - they're)
 ```
 
@@ -112,7 +124,8 @@ words --reset-api
 
 ### 💡 Pro Tips
 - **Fast corrections**: Just type `words` followed by any word
-- **No quotes needed**: `words misspelled word` works fine
+- **Sentence corrections**: Use double quotes for full sentences
+- **No extra quotes needed**: `words misspelled word` works for multiple words
 - **Secure**: Your API key is stored locally in `~/.config/spelling-cli/config.json`
 - **Offline safety**: No data is stored remotely, only sent to Google's API for processing
 
@@ -145,6 +158,7 @@ words --reset-api
 | `words occassion` | `occasion` | Double letter fix |
 | `words therefor` | `(therefore - therefor)` | Multiple options |
 | `words reccomend` | `recommend` | Common misspelling |
+| `words "This is a grate sentance."` | `This is a great sentence.` | Sentence correction |
 
 ---
 
