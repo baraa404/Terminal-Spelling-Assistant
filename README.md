@@ -23,10 +23,10 @@
 ### Installation
 ```bash
 # Quick install (recommended)
-pip install git+https://github.com/baraa404/spelling-cli.git
+pip install git+https://github.com/baraa404/Terminal-Spelling-Assistant
 
 # Or clone and install
-git clone https://github.com/baraa404/spelling-cli
+git clone https://github.com/baraa404/Terminal-Spelling-Assistant
 cd spelling-cli
 pip install .
 ```
